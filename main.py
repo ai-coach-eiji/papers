@@ -8,7 +8,7 @@ import arxiv
 import pytz
 import sys
 sys.path.append('../')
-from .papers.keys import APP_NAME, APP_KEY
+from .papers.keys import *
 
 # webhook POST先URL
 API_URL = f"https://maker.ifttt.com/trigger/{APP_NAME}/with/key/{APP_KEY}"
