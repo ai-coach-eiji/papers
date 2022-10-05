@@ -26,5 +26,5 @@ jobs:
 
       - name: Run script
         run: |
-          # 定期実行するファイルを指定。・・・③
+          # 定期実行するファイルを指定・・・③
           python main.py
