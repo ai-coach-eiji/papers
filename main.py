@@ -6,9 +6,15 @@ import datetime
 
 import arxiv
 import pytz
-import sys
-sys.path.append('../')
-from .papers.keys import *
+
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+APP_NAME = os.environ.get("APP_NAME")
+APP_KEY = os.environ.get("APP_KEY")
 
 # webhook POST先URL
 API_URL = f"https://maker.ifttt.com/trigger/{APP_NAME}/with/key/{APP_KEY}"
