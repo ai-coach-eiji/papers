@@ -49,14 +49,14 @@ def main(api_url, cat_list, id_list):
                 #print('links: ', result.links)
                 #print('summary:\n', result.summary)
 
-                url = result.links[0]['href']
-                id_list.append(url) # urlをidとしてpickleに保存
+            url = result.links[0]['href']
+            id_list.append(url) # urlをidとしてpickleに保存
 
-                message = "\n".join(["<br>タイトル: "+result.title, "<br><br>URL: "+url, f"<br>[{cat}]", "<br><br>発行日: " + result.published])             
-     
-                #webhookへPost
-                response=requests.post(api_url, data={"value1": message})
-                sleep(2)
+            message = "\n".join(["<br>タイトル: "+result.title, "<br><br>URL: "+url, f"<br>[{cat}]", "<br><br>発行日: " + result.published])             
+    
+            #webhookへPost
+            response=requests.post(api_url, data={"value1": message})
+            sleep(2)
 
 if __name__ == "__main__":
     print("Publish")
