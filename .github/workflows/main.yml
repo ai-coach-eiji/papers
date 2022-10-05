@@ -24,9 +24,9 @@ jobs:
           python -m pip install --upgrade pip
           # 必要なパッケージインストール・・・②
           python -m pip install arxiv==0.5.1
+          python -m pip install pytz
 
       - name: Run script
         run: |
           # 定期実行するファイルを指定・・・③
-          pwd
           python main.py
