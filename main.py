@@ -7,10 +7,10 @@ import datetime
 import arxiv
 import pytz
 
-from os.path import join, dirname
+import os
 from dotenv import load_dotenv
 
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 APP_NAME = os.environ.get("APP_NAME")
