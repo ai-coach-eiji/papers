@@ -6,7 +6,8 @@ import datetime
 
 import arxiv
 import pytz
-
+import sys
+sys.path.append('../')
 from .keys import APP_NAME, APP_KEY
 
 # webhook POST先URL
