@@ -25,6 +25,7 @@ jobs:
           # 必要なパッケージインストール・・・②
           python -m pip install arxiv==0.5.1
           python -m pip install pytz
+          python -m pip install python-dotenv
 
       - name: Run script
         run: |
