@@ -70,9 +70,7 @@ if __name__ == "__main__":
     # Query for arXiv API
     cat_list = ['AI', 'CL', 'CV', 'CY', 'ET', 'GR', 'GT', 'HC']
     start = 0
-
-    # Post greeting to your Slack
-    requests.post(api_url, json={"text": "Hello!!"})
+    
     # Call function
     main(API_URL, cat_list, id_list)
 
