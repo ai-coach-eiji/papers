@@ -20,6 +20,8 @@ APP_KEY = os.environ.get("APP_KEY")
 API_URL = f"https://maker.ifttt.com/trigger/{APP_NAME}/with/key/{APP_KEY}"
 
 def main(api_url, cat_list, id_list):
+    result_dict = {}
+
     dt_now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
     dt_old = dt_now - datetime.timedelta(days=1)
     dt_all = dt_old.strftime('%Y%m%d%H%M%S')
@@ -42,13 +44,9 @@ def main(api_url, cat_list, id_list):
                 max_results=30, 
                 sort_by='submittedDate'
         )
-
+        r_count = 0
         for result in search:
             if 'https://' in result.summary:
-                print('title: ', result.title)
-                #print('links: ', result.links)
-                #print('summary:\n', result.summary)
-
                 url = result.links[0]['href']
 
                 if url not in id_list:
@@ -56,10 +54,15 @@ def main(api_url, cat_list, id_list):
 
                     message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + result.published])             
         
-                    # webhookへPost
                     #print('POST URL: ', API_URL) #DEBUG
                     response=requests.post(api_url, data={"value1": message})
+                    r_count += 1
                     sleep(2)
+        # 結果の表示用
+        result_dict[f'{cat}'] = r_count
+    
+    r_message = "\n".join([f"{k}: {v}" for k, v in result_dict()])
+    response=requests.post(api_url, data={"value1": f"{dt_now}\n{r_message}"})
 
 if __name__ == "__main__":
     print("Publish")
