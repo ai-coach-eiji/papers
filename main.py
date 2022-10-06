@@ -52,7 +52,7 @@ def main(api_url, cat_list, id_list):
                 url = result.links[0]['href']
                 id_list.append(url) # urlをidとしてpickleに保存
 
-                message = "\n".join(["<br>タイトル: "+result.title, "<br><br>URL: "+url, f"<br>[{cat}]", "<br><br>発行日: " + result.published])             
+                message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + result.published])             
      
                 # webhookへPost
                 #print('POST URL: ', API_URL) #DEBUG
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
     # Load log of published data
     if os.path.exists("published.pkl"):
-        id_list = pickle.load(open("published.pkl"))
+        id_list = pickle.load(open("published.pkl", "rb"))
     else:
         print('pickle Not Exist.')
         id_list = []

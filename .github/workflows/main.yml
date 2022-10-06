@@ -35,5 +35,4 @@ jobs:
       - name: Run script
         run: |
           # 定期実行するファイルを指定・・・③
-          ls -a
           python main.py
