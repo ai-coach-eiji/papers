@@ -39,7 +39,7 @@ def main(api_url, cat_list, id_list):
         
         search = arxiv.query(
                 query=q, 
-                max_results=10, 
+                max_results=30, 
                 sort_by='submittedDate'
         )
 
