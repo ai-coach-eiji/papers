@@ -50,14 +50,16 @@ def main(api_url, cat_list, id_list):
                 #print('summary:\n', result.summary)
 
                 url = result.links[0]['href']
-                id_list.append(url) # urlをidとしてpickleに保存
 
-                message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + result.published])             
-     
-                # webhookへPost
-                #print('POST URL: ', API_URL) #DEBUG
-                response=requests.post(api_url, data={"value1": message})
-                sleep(2)
+                if url not in id_list:
+                    id_list.append(url) # urlをidとしてpickleに保存
+
+                    message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + result.published])             
+        
+                    # webhookへPost
+                    #print('POST URL: ', API_URL) #DEBUG
+                    response=requests.post(api_url, data={"value1": message})
+                    sleep(2)
 
 if __name__ == "__main__":
     print("Publish")
