@@ -26,7 +26,12 @@ jobs:
           python -m pip install arxiv==0.5.1
           python -m pip install pytz
           python -m pip install python-dotenv
-
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo APP_NAME="${{ secrets.APP_NAME }} >> .env
+          echo APP_KEY=${{ secrets.APP_KEY }} >> .env
+          cat .env
       - name: Run script
         run: |
           # 定期実行するファイルを指定・・・③
