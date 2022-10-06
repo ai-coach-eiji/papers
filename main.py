@@ -21,7 +21,7 @@ API_URL = f"https://maker.ifttt.com/trigger/{APP_NAME}/with/key/{APP_KEY}"
 
 def main(api_url, cat_list, id_list):
     dt_now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
-    dt_old = dt_now - datetime.timedelta(days=7)
+    dt_old = dt_now - datetime.timedelta(days=1)
     dt_all = dt_old.strftime('%Y%m%d%H%M%S')
     dt_day = dt_old.strftime('%Y%m%d')
     dt_hour = dt_old.strftime('%H')
