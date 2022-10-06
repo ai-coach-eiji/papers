@@ -54,7 +54,8 @@ def main(api_url, cat_list, id_list):
 
                 message = "\n".join(["<br>タイトル: "+result.title, "<br><br>URL: "+url, f"<br>[{cat}]", "<br><br>発行日: " + result.published])             
      
-                #webhookへPost
+                # webhookへPost
+                print('POST URL: ', API_URL) #DEBUG
                 response=requests.post(api_url, data={"value1": message})
                 sleep(2)
 
