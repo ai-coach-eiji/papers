@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
+print('dotenv_path: ', dotenv_path) # DEBUG
 
 APP_NAME = os.environ.get("APP_NAME")
 APP_KEY = os.environ.get("APP_KEY")
@@ -66,6 +67,7 @@ if __name__ == "__main__":
     if os.path.exists("published.pkl"):
         id_list = pickle.load(open("published.pkl"))
     else:
+        print('pickle Not Exist.')
         id_list = []
 
     # Query for arXiv API
