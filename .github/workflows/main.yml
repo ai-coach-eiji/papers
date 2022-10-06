@@ -29,7 +29,7 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo APP_NAME="${{ secrets.APP_NAME }} >> .env
+          echo APP_NAME=${{ secrets.APP_NAME }} >> .env
           echo APP_KEY=${{ secrets.APP_KEY }} >> .env
           cat .env
       - name: Run script
