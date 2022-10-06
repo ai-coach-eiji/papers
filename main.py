@@ -62,7 +62,7 @@ def main(api_url, cat_list, id_list):
         result_dict[f'{cat}'] = r_count
     
     r_message = "\n".join([f"{k}: {v}" for k, v in result_dict.items()])
-    response=requests.post(api_url, data={"value1": f"{dt_day}\n{r_message}"})
+    response=requests.post(api_url, data={"value1": f"{dt_day}<br>{r_message}"})
 
 if __name__ == "__main__":
     print("Publish")
