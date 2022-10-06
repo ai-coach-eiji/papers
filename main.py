@@ -61,7 +61,7 @@ def main(api_url, cat_list, id_list):
         # 結果の表示用
         result_dict[f'{cat}'] = r_count
     
-    r_message = "\n".join([f"{k}: {v}" for k, v in result_dict()])
+    r_message = "\n".join([f"{k}: {v}" for k, v in result_dict])
     response=requests.post(api_url, data={"value1": f"{dt_now}\n{r_message}"})
 
 if __name__ == "__main__":
