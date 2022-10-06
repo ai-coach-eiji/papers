@@ -36,3 +36,6 @@ jobs:
         run: |
           # 定期実行するファイルを指定・・・③
           python main.py
+      - uses: stefanzweifel/git-auto-commit-action@v4.2.0
+        with:
+          commit_message: Auto search
