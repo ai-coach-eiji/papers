@@ -17,7 +17,6 @@ jobs:
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
-          node-version: "16"
           python-version: 3.8
       - name: Install dependencies
         run: |
@@ -40,4 +39,5 @@ jobs:
       - name: Update pickle file
         uses: stefanzweifel/git-auto-commit-action@v4.2.0
         with:
+          node-version: "16"
           commit_message: Auto search
