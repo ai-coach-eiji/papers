@@ -14,6 +14,9 @@ jobs:
     # 実行する処理＆コマンド指定
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
@@ -39,5 +42,4 @@ jobs:
       - name: Update pickle file
         uses: stefanzweifel/git-auto-commit-action@v4.2.0
         with:
-          node-version: "16"
           commit_message: Auto search
