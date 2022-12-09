@@ -42,7 +42,7 @@ def main(api_url, cat_list, id_list):
             print('result: ', result)
             
             if 'https://' in result.summary:
-                url = result.links[0]['href']
+                url = result.links[0]
                 print('url: ', url)
 
                 if url not in id_list:
