@@ -38,7 +38,7 @@ def main(api_url, cat_list, id_list):
         )
         
         r_count = 0
-        for result in search:
+        for result in search.results():
             print('result: ', result)
             
             if 'https://' in result.summary:
