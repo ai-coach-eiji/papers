@@ -23,29 +23,20 @@ def main(api_url, cat_list, id_list):
     print('Id list: ', id_list)
     
     result_dict = {}
-
+    
     dt_now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
-    dt_old = dt_now - datetime.timedelta(days=1)
-    dt_all = dt_old.strftime('%Y%m%d%H%M%S')
-    dt_day = dt_old.strftime('%Y%m%d')
-    dt_hour = dt_old.strftime('%H')
-
-    if dt_hour == '00':
-        start = dt_day
-        dt_last = dt_day + '115959'
-    else:
-        start = dt_all
-        dt_last = dt_day + '235959'
+    dt_day = str(dt_now).split(' ', 1)[0]
 
     for cat in cat_list:
         print('\n Searching for category: ', cat)
-        q = f'cat:cs.{cat} AND submittedDate:[{dt_day} TO {dt_last}]'
+        q = f'cat:cs.{cat}'
         
-        search = arxiv.query(
-                query=q, 
-                max_results=30, 
-                sort_by='submittedDate'
+        search = arxiv.Search(
+            query = q,
+            max_results = 20,
+            sort_by = arxiv.SortCriterion.SubmittedDate
         )
+        
         r_count = 0
         for result in search:
             print('result: ', result)
