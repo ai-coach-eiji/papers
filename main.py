@@ -69,7 +69,8 @@ if __name__ == "__main__":
 
     # Load log of published data
     if os.path.exists("published.pkl"):
-        id_list = pickle.load(open("published.pkl", "rb"))
+        with open("published.pkl", mode='rb') as f:
+            id_list = pickle.load(f)
     else:
         print('pickle Not Exist.')
         id_list = []
