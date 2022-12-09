@@ -48,7 +48,7 @@ def main(api_url, cat_list, id_list):
                 if url not in id_list:
                     id_list.append(url) # urlをidとしてpickleに保存
 
-                    message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + str(result.published]))             
+                    message = "\n".join([f"<br>[{cat}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + str(result.published)])             
         
                     #print('POST URL: ', API_URL) #DEBUG
                     response=requests.post(api_url, data={"value1": message})
