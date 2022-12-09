@@ -20,7 +20,7 @@ APP_KEY = os.environ.get("APP_KEY")
 API_URL = f"https://maker.ifttt.com/trigger/{APP_NAME}/with/key/{APP_KEY}"
 
 def main(api_url, cat_list, id_list):
-    print('Id list: ', id_list)
+    #print('Id list: ', id_list)
     
     result_dict = {}
     
@@ -39,11 +39,11 @@ def main(api_url, cat_list, id_list):
         
         r_count = 0
         for result in search.results():
-            print('result: ', result)
+            #print('result: ', result)
             
             if 'https://' in result.summary:
                 url = str(result.links[0])
-                print('url: ', url)
+                #print('url: ', url)
 
                 if url not in id_list:
                     id_list.append(url) # urlをidとしてpickleに保存
