@@ -48,6 +48,8 @@ def main(api_url, cat_list, id_list):
         )
         r_count = 0
         for result in search:
+            print('result: ', result)
+            
             if 'https://' in result.summary:
                 url = result.links[0]['href']
                 print('url: ', url)
