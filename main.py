@@ -27,6 +27,7 @@ def main(api_url, cat_list, id_list):
     dt_now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
     dt_day = str(dt_now).split(' ', 1)[0]
 
+    print(f'\n--- Starting search ---')
     for cat in cat_list:
         print('\n Searching for category: ', cat)
         q = f'cat:cs.{cat}'
@@ -69,7 +70,7 @@ def main(api_url, cat_list, id_list):
 
         search_ai_sports = arxiv.Search(
             query = q_ai_sports,
-            max_results = 10, # こちらは既存の検索と分けて結果数を調整しても良い
+            max_results = 10,
             sort_by = arxiv.SortCriterion.SubmittedDate
         )
 
