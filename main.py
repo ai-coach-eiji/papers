@@ -59,8 +59,8 @@ def main(api_url, cat_list, id_list):
         result_dict[f'{cat}'] = r_count
 
     print('\n Searching for AI x Sports papers...')
-    # 検索対象とするAIカテゴリを明示的に指定
-    ai_sports_categories = ['cs.AI', 'cs.CV', 'cs.CL', 'cs.GT', 'stat.ML', 'eess.AS'] # AIとスポーツの関連性が高いカテゴリ
+    # AIとスポーツの関連性が高いカテゴリを指定
+    ai_sports_categories = ['cs.AI', 'cs.CV', 'cs.CL', 'cs.GT', 'stat.ML', 'eess.AS']
     
     ai_sports_count = 0
     for ai_cat in ai_sports_categories:
