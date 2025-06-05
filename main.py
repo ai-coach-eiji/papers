@@ -56,6 +56,35 @@ def main(api_url, cat_list, id_list):
                     sleep(2)
         # 結果の表示用
         result_dict[f'{cat}'] = r_count
+
+    print('\n Searching for AI x Sports papers...')
+    # 検索対象とするAIカテゴリを明示的に指定
+    ai_sports_categories = ['cs.AI', 'cs.CV', 'cs.CL', 'cs.GT', 'stat.ML', 'eess.AS'] # AIとスポーツの関連性が高いカテゴリ
+    
+    ai_sports_count = 0
+    for ai_cat in ai_sports_categories:
+        print(f'  - In category: {ai_cat}')
+        # 各AIカテゴリ内でスポーツ関連キーワードを検索
+        q_ai_sports = f'cat:{ai_cat} AND (ti:"sports" OR abs:"sports" OR ti:"athletic" OR abs:"athletic" OR ti:"game analysis" OR abs:"game analysis" OR ti:"player performance" OR abs:"player performance" OR ti:"sport" OR abs:"sport" OR ti:"e-sports" OR abs:"e-sports" OR ti:"sport analytics" OR abs:"sport analytics")'
+
+        search_ai_sports = arxiv.Search(
+            query = q_ai_sports,
+            max_results = 10, # こちらは既存の検索と分けて結果数を調整しても良い
+            sort_by = arxiv.SortCriterion.SubmittedDate
+        )
+
+        for result in search_ai_sports.results():
+            if result.links:
+                url = str(result.links[0])
+                if url not in id_list:
+                    id_list.append(url)
+
+                    message = "\n".join([f"<br>[AI x Sports - {ai_cat.split('.')[-1].upper()}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + str(result.published)])
+
+                    response=requests.post(api_url, data={"value1": message})
+                    ai_sports_count += 1
+                    sleep(2)
+    result_dict['AI x Sports'] = ai_sports_count
     
     r_message = "\n".join([f"{k}: {v}" for k, v in result_dict.items()])
     response=requests.post(api_url, data={"value1": f"{dt_day}<br>{r_message}"})
@@ -72,7 +101,7 @@ if __name__ == "__main__":
         id_list = []
 
     # Query for arXiv API
-    cat_list = ['AI', 'CL', 'CV', 'CY', 'ET', 'GR', 'GT', 'HC']
+    cat_list = ['AI', 'CL', 'CV', 'CY', 'ET', 'GR', 'GT', 'HC', 'eess.AS']
     
     # Call function
     main(API_URL, cat_list, id_list)
