@@ -73,18 +73,28 @@ def main(api_url, cat_list, id_list):
             max_results = 10,
             sort_by = arxiv.SortCriterion.SubmittedDate
         )
-
+        
         for result in search_ai_sports.results():
-            if result.links:
-                url = str(result.links[0])
-                if url not in id_list:
-                    id_list.append(url)
+            url = result.pdf_url
 
-                    message = "\n".join([f"<br>[AI x Sports - {ai_cat.split('.')[-1].upper()}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + str(result.published)])
+            if url not in id_list:
+                id_list.append(url)
+                
+                # 例1：シンプルにタイトルとURLと発行日
+                # message = "\n".join([f"<br>[AI x Sports - {ai_cat.split('.')[-1].upper()}]: {result.title}", "<br><br>URL: "+url, "<br><br>発行日: " + str(result.published)])
 
-                    response=requests.post(api_url, data={"value1": message})
-                    ai_sports_count += 1
-                    sleep(2)
+                # 例2：アブストラクトの最初の200文字を追加する場合
+                summary_snippet = result.summary[:200] + "..." if len(result.summary) > 200 else result.summary
+                message = "\n".join([
+                    f"<br>[AI x Sports - {ai_cat.split('.')[-1].upper()}]: {result.title}",
+                    "<br><br>URL: "+url,
+                    "<br><br>発行日: " + str(result.published)
+                ])
+
+                response=requests.post(api_url, data={"value1": message})
+                ai_sports_count += 1
+                sleep(2)
+            
     result_dict['AI x Sports'] = ai_sports_count
     
     r_message = "\n".join([f"{k}: {v}" for k, v in result_dict.items()])
